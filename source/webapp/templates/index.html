@@ -1,0 +1,11 @@
+{% extends "base.html" %}
+
+{% block content %}
+{% for guest in guestbook %}
+    <div class="col-md-12 guest mb-3">
+      <div><h3>{{ guest.name }} ({{ guest.email }}) <i class="fas fa-edit"></i> <i class="fas fa-trash-alt"></i></h3>
+        <p>{{ guest.text }}</p>
+      </div>
+    </div>
+{% endfor %}
+{% endblock %}
