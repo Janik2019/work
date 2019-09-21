@@ -15,7 +15,7 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
-from webapp.views import guestbook_index, guestbook_create_view, guestbook_edit, guestbook_delete
+from webapp.views import guestbook_index, guestbook_create_view, guestbook_edit, guestbook_delete, search
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -23,4 +23,5 @@ urlpatterns = [
     path('guestbook/add/', guestbook_create_view, name='guestbook_add'),
     path('guestbook/edit/<int:pk>/', guestbook_edit, name='guestbook_edit'),
     path('guestbook/delete/<int:pk>/', guestbook_delete, name='guestbook_delete'),
+    path('guestbook/search/', search, name='search'),
 ]

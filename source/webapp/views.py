@@ -51,3 +51,13 @@ def guestbook_delete(request, pk):
     elif request.method == 'POST':
         guestbook.delete()
         return redirect('index')
+
+
+
+def search(request):
+    print(request.GET)
+    list=request.GET.get('search')
+    guests= Entry.objects.filter(name__contains=list)
+    return render(request, 'index.html', context={
+        'guestbook': guests
+    })
