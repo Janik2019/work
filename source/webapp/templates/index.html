@@ -1,12 +1,17 @@
 {% extends "base.html" %}
 
 {% block content %}
-    <a href="{% url 'guestbook_add' %}">Создать Запись+</a>
+    <a class="btn btn-dark mb-3 mt-3" href="{% url 'guestbook_add' %}">Создать Запись+</a>
 {% for guest in guestbook %}
     <div class="col-md-12 guest mb-3">
-      <div><h3>{{ guest.name }} ({{ guest.email }}) <i class="fas fa-edit"></i> <i class="fas fa-trash-alt"></i></h3>
+      <div>
+          <h3>{{ guest.name }} ({{ guest.email }})
+              <a href="{% url 'guestbook_edit' guest.pk %}"><i class="fas fa-edit"></i></a>
+              <a href="{% url 'guestbook_delete' guest.pk  %}"><i class="fas fa-trash-alt"></i></a>
+          </h3>
         <p>{{ guest.text }}</p>
       </div>
     </div>
+
 {% endfor %}
 {% endblock %}

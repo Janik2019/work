@@ -1,0 +1,9 @@
+{% extends "base.html" %}
+{% block title %}Delete Guest{% endblock %}
+{% block content %}
+   <h1>Are you sure want to delete guest "{{ product }}"?</h1>
+   <form method="POST" action="{% url "guestbook_delete" guestbook.pk %}">
+       {% csrf_token %}
+       {% include 'partial/guestbook_form.html' with button_text='Delete' %}
+   </form>
+{% endblock %}

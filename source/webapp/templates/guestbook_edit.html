@@ -1,0 +1,11 @@
+{% extends "base.html" %}
+{% block title %}Edit guestbook{% endblock %}
+{#{%  block menu %}#}
+{#{% endblock %}#}
+{% block content %}
+    <h1>Edit guestbook</h1>
+    <form method="POST" action="{% url 'guestbook_edit' guestbook.pk %}">
+        {% csrf_token %}
+        {% include 'partial/guestbook_form.html' with button_text="Update" %}
+    </form>
+{% endblock %}

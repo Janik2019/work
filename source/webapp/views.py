@@ -21,3 +21,33 @@ def guestbook_create_view(request, *args, **kwargs):
             return redirect('index')
         else:
             return render(request, 'guestbookcreate.html', context={'form': form})
+
+
+def guestbook_edit(request, pk):
+    guestbook = get_object_or_404(Entry, pk=pk)
+    if request.method == 'GET':
+        form = guestbookForm(data={'name': guestbook.name,
+                              'email': guestbook.email,
+                              'status': guestbook.text
+                              })
+        return render(request, 'guestbook_edit.html', context={'form': form, 'guestbook': guestbook})
+    elif request.method == 'POST':
+        form = guestbookForm(data=request.POST)
+        if form.is_valid():
+            data = form.cleaned_data
+            guestbook.name = data['name']
+            guestbook.email = data['email']
+            guestbook.text = data['text']
+            guestbook.save()
+            return redirect('index')
+        else:
+            return render(request, 'guestbook_edit.html', context={'form': form, 'guestbook': guestbook})
+
+
+def guestbook_delete(request, pk):
+    guestbook = get_object_or_404(Entry, pk=pk)
+    if request.method == 'GET':
+        return render(request, 'guestbook_delete.html', context={'guestbook': guestbook})
+    elif request.method == 'POST':
+        guestbook.delete()
+        return redirect('index')
