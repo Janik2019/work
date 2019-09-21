@@ -15,9 +15,10 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
-from webapp.views import guestbook_index
+from webapp.views import guestbook_index, guestbook_create_view
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', guestbook_index),
+    path('', guestbook_index, name='index'),
+    path('guestbook/add/', guestbook_create_view, name='guestbook_add'),
 ]

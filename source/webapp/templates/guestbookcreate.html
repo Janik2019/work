@@ -1,0 +1,9 @@
+{% extends "base.html" %}
+{% block title %}Create Guest{% endblock %}
+{% block content %}
+   <h1>Create Guest</h1>
+   <form method="POST" action="{% url "guestbook_add" %}">
+       {% csrf_token %}
+       {% include 'partial/guestbook_form.html' with button_text='Create' %}
+   </form>
+{% endblock %}
